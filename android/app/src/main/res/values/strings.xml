@@ -1,0 +1,33 @@
+<resources>
+    <string name="app_name">Saveoury</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+    <string name="title_post">New Post</string>
+    <string name="title_profile">Profile</string>
+    <string name="title">Saveoury</string>
+    <string name="masuk">Masuk</string>
+    <string name="mari_saling_berbagi_sesama_kita">Mari saling berbagi sesama kita.</string>
+    <string name="email">Email</string>
+    <string name="masukkan_email_kamu_disini">Masukkan email kamu disini</string>
+    <string name="password">Password</string>
+    <string name="masukkan_password_kamu_disini">Masukkan password kamu disini</string>
+    <string name="daftar">Daftar</string>
+    <string name="nama_lengkap">Nama Lengkap</string>
+    <string name="masukkan_nama_lengkapmu_disini">Masukkan nama lengkapmu disini</string>
+    <string name="lanjut">Lanjut</string>
+    <string name="konfirmasi_password">Konfirmasi Password</string>
+    <string name="masukkan_sekali_lagi_password_kamu_disini">Masukkan sekali lagi password kamu disini</string>
+    <string name="berbagi_tak_perlu_menunggu_kaya">Berbagi tak perlu menunggu kaya</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="informasi_pribadi">Informasi Pribadi</string>
+    <string name="pastikan_terisi_secara_benar_ya">Pastikan terisi secara benar ya</string>
+    <string name="nomor_hp">Nomor HP</string>
+    <string name="masukkan_nomor_hp">Masukkan nomor hp kamu disini</string>
+    <string name="alamat_rumah">Alamat Rumah</string>
+    <string name="masukkan_alamat_rumah_kamu_disini">Masukkan alamat rumah kamu disini</string>
+    <string name="kota">Kota</string>
+    <string name="temukan_kotamu_disini">Temukan kotamu disini</string>
+    <string name="daftar_sekarang">Daftar Sekarang</string>
+</resources>

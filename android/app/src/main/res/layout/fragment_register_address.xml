@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/color_accent"
+    tools:context=".ui.register.fragment.RegisterAddressFragment">
+
+    <LinearLayout
+        android:id="@+id/header"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingHorizontal="24dp"
+        android:background="@color/white"
+        android:paddingVertical="30dp"
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/poppins_medium"
+            android:textSize="22sp"
+            android:textColor="@color/black"
+            android:text="@string/informasi_pribadi" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="14sp"
+            android:textColor="@color/grey"
+            android:fontFamily="@font/poppins_light"
+            android:text="@string/pastikan_terisi_secara_benar_ya" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/container"
+        android:layout_below="@+id/header"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="24dp"
+        android:padding="24dp"
+        android:background="@color/white"
+        android:orientation="vertical"
+        >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:textColor="@color/black"
+            android:text="@string/nama_lengkap"
+            android:fontFamily="@font/poppins"
+            android:layout_marginBottom="6dp"
+            />
+
+        <EditText
+            android:id="@+id/et_nama_lengkap"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="14sp"
+            android:background="@drawable/edit_text_background"
+            android:fontFamily="@font/poppins"
+            android:hint="@string/masukkan_nama_lengkapmu_disini"
+            android:inputType="textEmailAddress"
+            android:layout_marginBottom="16dp"
+            android:padding="10dp" />
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:textColor="@color/black"
+            android:text="@string/nomor_hp"
+            android:fontFamily="@font/poppins"
+            android:layout_marginBottom="6dp"
+            />
+
+        <EditText
+            android:id="@+id/et_nomor_hp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="14sp"
+            android:background="@drawable/edit_text_background"
+            android:fontFamily="@font/poppins"
+            android:hint="@string/masukkan_nomor_hp"
+            android:inputType="phone"
+            android:layout_marginBottom="16dp"
+            android:padding="10dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:textColor="@color/black"
+            android:text="@string/alamat_rumah"
+            android:fontFamily="@font/poppins"
+            android:layout_marginBottom="6dp"
+            />
+
+        <EditText
+            android:id="@+id/et_alamat_rumah"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="14sp"
+            android:background="@drawable/edit_text_background"
+            android:fontFamily="@font/poppins"
+            android:hint="@string/masukkan_alamat_rumah_kamu_disini"
+            android:inputType="text"
+            android:layout_marginBottom="16dp"
+            android:padding="10dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:textColor="@color/black"
+            android:text="@string/kota"
+            android:fontFamily="@font/poppins"
+            android:layout_marginBottom="6dp"
+            />
+
+        <EditText
+            android:id="@+id/et_kota"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="14sp"
+            android:background="@drawable/edit_text_background"
+            android:fontFamily="@font/poppins"
+            android:hint="@string/temukan_kotamu_disini"
+            android:inputType="text"
+            android:layout_marginBottom="24dp"
+            android:padding="10dp" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_daftar_sekarang"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/daftar_sekarang"
+            android:textSize="14sp"
+            app:cornerRadius="8dp"
+            app:backgroundTint="@color/primary_variant"
+            android:textColor="@color/white"
+            android:fontFamily="@font/poppins_medium"
+            android:paddingVertical="12dp"
+            android:layout_marginBottom="8dp"
+            />
+
+    </LinearLayout>
+
+</RelativeLayout>

@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/color_accent"
+    tools:context=".ui.register.fragment.RegisterFragment">
+
+    <LinearLayout
+        android:id="@+id/header"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingHorizontal="24dp"
+        android:background="@color/white"
+        android:paddingVertical="30dp"
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/poppins_medium"
+            android:textSize="22sp"
+            android:textColor="@color/black"
+            android:text="@string/daftar" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="14sp"
+            android:textColor="@color/grey"
+            android:fontFamily="@font/poppins_light"
+            android:text="@string/berbagi_tak_perlu_menunggu_kaya" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/container"
+        android:layout_below="@+id/header"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="24dp"
+        android:padding="24dp"
+        android:background="@color/white"
+        android:orientation="vertical"
+        >
+
+        <include
+            android:id="@+id/content_profile"
+            layout="@layout/content_profile" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:textColor="@color/black"
+            android:text="@string/email"
+            android:fontFamily="@font/poppins"
+            android:layout_marginBottom="6dp"
+            />
+
+        <EditText
+            android:id="@+id/et_email"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="14sp"
+            android:background="@drawable/edit_text_background"
+            android:fontFamily="@font/poppins"
+            android:hint="@string/masukkan_email_kamu_disini"
+            android:inputType="textEmailAddress"
+            android:layout_marginBottom="16dp"
+            android:padding="10dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:textColor="@color/black"
+            android:text="@string/password"
+            android:fontFamily="@font/poppins"
+            android:layout_marginBottom="6dp"
+            />
+
+        <EditText
+            android:id="@+id/et_password"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="14sp"
+            android:background="@drawable/edit_text_background"
+            android:fontFamily="@font/poppins"
+            android:hint="@string/masukkan_password_kamu_disini"
+            android:inputType="textPassword"
+            android:layout_marginBottom="16dp"
+            android:padding="10dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:textColor="@color/black"
+            android:text="@string/konfirmasi_password"
+            android:fontFamily="@font/poppins"
+            android:layout_marginBottom="6dp"
+            />
+
+        <EditText
+            android:id="@+id/et_password_confirmation"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="14sp"
+            android:background="@drawable/edit_text_background"
+            android:fontFamily="@font/poppins"
+            android:hint="@string/masukkan_sekali_lagi_password_kamu_disini"
+            android:inputType="textPassword"
+            android:layout_marginBottom="24dp"
+            android:padding="10dp" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_lanjut"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/lanjut"
+            android:textSize="14sp"
+            app:cornerRadius="8dp"
+            app:backgroundTint="@color/primary_variant"
+            android:textColor="@color/white"
+            android:fontFamily="@font/poppins_medium"
+            android:paddingVertical="12dp"
+            android:layout_marginBottom="8dp"
+            />
+
+    </LinearLayout>
+
+</RelativeLayout>
