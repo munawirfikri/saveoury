@@ -1,3 +1,5 @@
+@file:Suppress("DEPRECATION")
+
 package com.munawirfikri.saveoury.ui.register.fragment
 
 import android.app.Activity
@@ -54,6 +56,8 @@ class RegisterFragment : Fragment(), View.OnClickListener {
             .maxResultSize(200, 200)
             .start(PROFILE_IMAGE_REQ_CODE)
     }
+
+
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)

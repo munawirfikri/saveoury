@@ -98,6 +98,7 @@
             android:layout_marginBottom="6dp"
             />
 
+
         <EditText
             android:id="@+id/et_alamat_rumah"
             android:layout_width="match_parent"
@@ -120,17 +121,16 @@
             android:layout_marginBottom="6dp"
             />
 
-        <EditText
-            android:id="@+id/et_kota"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textSize="14sp"
-            android:background="@drawable/edit_text_background"
-            android:fontFamily="@font/poppins"
-            android:hint="@string/temukan_kotamu_disini"
-            android:inputType="text"
-            android:layout_marginBottom="24dp"
-            android:padding="10dp" />
+        <AutoCompleteTextView
+                android:id="@+id/ed_kota"
+                android:padding="10dp"
+                android:fontFamily="@font/poppins"
+                android:textSize="14sp"
+                android:layout_width="match_parent"
+                android:background="@drawable/edit_text_background"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="24dp"
+                android:hint="@string/temukan_kotamu_disini" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btn_daftar_sekarang"
