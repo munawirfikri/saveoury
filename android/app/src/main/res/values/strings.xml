@@ -31,4 +31,7 @@
     <string name="temukan_kotamu_disini">Temukan kotamu disini</string>
     <string name="daftar_sekarang">Daftar Sekarang</string>
     <string name="lihat_semua">Lihat Semua</string>
+    <string name="email_not_valid">Email tidak valid!</string>
+    <string name="password_not_valid">Minimal 6 karakter!</string>
+    <string name="password_not_same">Password tidak sama!</string>
 </resources>

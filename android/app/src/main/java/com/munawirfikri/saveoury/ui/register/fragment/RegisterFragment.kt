@@ -1,21 +1,27 @@
-@file:Suppress("DEPRECATION")
-
 package com.munawirfikri.saveoury.ui.register.fragment
 
+import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.util.Log
+import android.util.Patterns
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.content.ContextCompat
 import com.github.dhaval2404.imagepicker.ImagePicker
+import com.jakewharton.rxbinding2.widget.RxTextView
 import com.munawirfikri.saveoury.R
 import com.munawirfikri.saveoury.databinding.ContentProfileBinding
 import com.munawirfikri.saveoury.databinding.FragmentRegisterBinding
+import io.reactivex.Observable
+import io.reactivex.Observable.combineLatest
+import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.FlowPreview
 
 class RegisterFragment : Fragment(), View.OnClickListener {
 
@@ -40,6 +46,61 @@ class RegisterFragment : Fragment(), View.OnClickListener {
         return binding.root
     }
 
+    @SuppressLint("CheckResult")
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        if (activity != null){
+            val emailStream = RxTextView.textChanges(binding.etEmail)
+                .skipInitialValue()
+                .map { email ->
+                    !Patterns.EMAIL_ADDRESS.matcher(email).matches()
+                }
+            emailStream.subscribe {
+                showEmailExistAlert(it)
+            }
+
+            val passwordStream = RxTextView.textChanges(binding.etPassword)
+                .skipInitialValue()
+                .map { password ->
+                    password.length < 6
+                }
+            passwordStream.subscribe {
+                showPasswordMinimalAlert(it)
+            }
+
+            val passwordConfirmationStream = Observable.merge(
+                RxTextView.textChanges(binding.etPassword)
+                    .map { password ->
+                        password.toString() != binding.etPasswordConfirmation.text.toString()
+                    },
+                RxTextView.textChanges(binding.etPasswordConfirmation)
+                    .map { confirmPassword ->
+                        confirmPassword.toString() != binding.etPassword.text.toString()
+                    }
+            )
+            passwordConfirmationStream.subscribe {
+                showPasswordConfirmationAlert(it)
+            }
+
+            val invalidFieldsStream = combineLatest(
+                emailStream,
+                passwordStream,
+                passwordConfirmationStream,
+                { emailInvalid: Boolean, passwordInvalid: Boolean, passwordConfirmationInvalid: Boolean ->
+                    !emailInvalid && !passwordInvalid && !passwordConfirmationInvalid
+                })
+            invalidFieldsStream.subscribe { isValid ->
+                if (isValid) {
+                    binding.btnLanjut.isEnabled = true
+                    binding.btnLanjut.setBackgroundColor(ContextCompat.getColor(requireContext(), R.color.primary_variant))
+                } else {
+                    binding.btnLanjut.isEnabled = false
+                    binding.btnLanjut.setBackgroundColor(ContextCompat.getColor(requireContext(), android.R.color.darker_gray))
+                }
+            }
+        }
+    }
+
     @Suppress("UNUSED_PARAMETER")
     fun pickProfileImage(view: View) {
         ImagePicker.with(this)
@@ -57,8 +118,7 @@ class RegisterFragment : Fragment(), View.OnClickListener {
             .start(PROFILE_IMAGE_REQ_CODE)
     }
 
-
-
+    @Suppress("DEPRECATION")
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         when (resultCode) {
@@ -81,6 +141,8 @@ class RegisterFragment : Fragment(), View.OnClickListener {
         }
     }
 
+    @FlowPreview
+    @ExperimentalCoroutinesApi
     override fun onClick(v: View?) {
         when(v?.id){
             R.id.imgProfile -> pickProfileImage(v)
@@ -107,4 +169,17 @@ class RegisterFragment : Fragment(), View.OnClickListener {
             }
         }
     }
+
+    private fun showEmailExistAlert(isNotValid: Boolean) {
+        binding.etEmail.error = if (isNotValid) getString(R.string.email_not_valid) else null
+    }
+
+    private fun showPasswordMinimalAlert(isNotValid: Boolean) {
+        binding.etPassword.error = if (isNotValid) getString(R.string.password_not_valid) else null
+    }
+
+    private fun showPasswordConfirmationAlert(isNotValid: Boolean) {
+        binding.etPasswordConfirmation.error = if (isNotValid) getString(R.string.password_not_same) else null
+    }
+
 }

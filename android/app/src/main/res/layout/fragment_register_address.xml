@@ -122,7 +122,7 @@
             />
 
         <AutoCompleteTextView
-                android:id="@+id/ed_kota"
+                android:id="@+id/et_kota"
                 android:padding="10dp"
                 android:fontFamily="@font/poppins"
                 android:textSize="14sp"

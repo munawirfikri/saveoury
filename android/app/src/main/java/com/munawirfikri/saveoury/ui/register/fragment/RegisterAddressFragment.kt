@@ -42,7 +42,7 @@ class RegisterAddressFragment : Fragment(), View.OnClickListener {
         // Inflate the layout for this fragment
         binding = FragmentRegisterAddressBinding.inflate(layoutInflater, container, false)
 
-        binding.edKota.addTextChangedListener(object : TextWatcher {
+        binding.etKota.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
             }
 
@@ -63,7 +63,7 @@ class RegisterAddressFragment : Fragment(), View.OnClickListener {
             }
             val adapter = ArrayAdapter(requireActivity(), android.R.layout.select_dialog_item, placesName)
             adapter.notifyDataSetChanged()
-            binding.edKota.setAdapter(adapter)
+            binding.etKota.setAdapter(adapter)
         })
 
         if (arguments != null) {
@@ -73,7 +73,7 @@ class RegisterAddressFragment : Fragment(), View.OnClickListener {
 //            val name = binding.etNamaLengkap.text.toString()
 //            val phoneNumber = binding.etNomorHp.text.toString()
 //            val address = binding.etAlamatRumah.text.toString()
-//            val city = binding.edKota.text.toString()
+//            val city = binding.etKota.text.toString()
 
             // PANGGIL API DISINI (POST)
 
