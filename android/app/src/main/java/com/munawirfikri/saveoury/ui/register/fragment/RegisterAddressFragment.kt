@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -11,6 +12,7 @@ import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import com.google.android.material.snackbar.Snackbar
 import com.munawirfikri.saveoury.R
 import com.munawirfikri.saveoury.databinding.FragmentRegisterAddressBinding
 import com.munawirfikri.saveoury.ui.main.MainActivity
@@ -32,6 +34,7 @@ class RegisterAddressFragment : Fragment(), View.OnClickListener {
     companion object {
         var EXTRA_EMAIL = "extra_email"
         var EXTRA_PASSWORD = "extra_password"
+        var EXTRA_PHOTO = "extra_photo"
     }
 
 
@@ -41,6 +44,9 @@ class RegisterAddressFragment : Fragment(), View.OnClickListener {
     ): View {
         // Inflate the layout for this fragment
         binding = FragmentRegisterAddressBinding.inflate(layoutInflater, container, false)
+
+        val photo = arguments?.getString(EXTRA_PHOTO)
+        Log.d("hasil photo", photo.toString())
 
         binding.etKota.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
@@ -67,18 +73,6 @@ class RegisterAddressFragment : Fragment(), View.OnClickListener {
         })
 
         if (arguments != null) {
-//            val data = ArrayList<String>()
-//            val email = arguments?.getString(EXTRA_EMAIL).toString()
-//            val password = arguments?.getString(EXTRA_PASSWORD).toString()
-//            val name = binding.etNamaLengkap.text.toString()
-//            val phoneNumber = binding.etNomorHp.text.toString()
-//            val address = binding.etAlamatRumah.text.toString()
-//            val city = binding.etKota.text.toString()
-
-            // PANGGIL API DISINI (POST)
-
-            // END OF API
-
             binding.btnDaftarSekarang.setOnClickListener(this)
         }
 
@@ -88,9 +82,34 @@ class RegisterAddressFragment : Fragment(), View.OnClickListener {
     override fun onClick(v: View?) {
         when(v?.id){
             R.id.btn_daftar_sekarang -> {
-                val intent = Intent(context, MainActivity::class.java)
-                startActivity(intent)
-                activity?.finish()
+                val email = arguments?.getString(EXTRA_EMAIL).toString()
+                val password = arguments?.getString(EXTRA_PASSWORD).toString()
+                val name = binding.etNamaLengkap.text.toString()
+                val phoneNumber = binding.etNomorHp.text.toString()
+                val address = binding.etAlamatRumah.text.toString()
+                val city = binding.etKota.text.toString()
+
+                registerViewModel.registerUser(name, email, password, phoneNumber,address,city)
+
+                registerViewModel.user.observe(viewLifecycleOwner, {user ->
+                    if (user != null){
+
+                        val intent = Intent(context, MainActivity::class.java)
+                        startActivity(intent)
+                        activity?.finish()
+                    }
+                })
+
+                registerViewModel.itExist.observe(viewLifecycleOwner, {
+                    if(it == false){
+                        Snackbar.make(binding.root, "Something went wrong", Snackbar.LENGTH_SHORT).show()
+                    }
+                })
+
+                registerViewModel.isLoading.observe(this, {
+                        binding.progressBar.visibility = if (it) View.VISIBLE else View.GONE
+                    })
+
             }
         }
     }

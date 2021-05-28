@@ -155,6 +155,7 @@ class RegisterFragment : Fragment(), View.OnClickListener {
 
                 mBundle.putString(RegisterAddressFragment.EXTRA_EMAIL, email)
                 mBundle.putString(RegisterAddressFragment.EXTRA_PASSWORD, password)
+                mBundle.putString(RegisterAddressFragment.EXTRA_PHOTO, mProfileUri.toString())
 
                 val mAddressFragment = RegisterAddressFragment()
                 val mFragmentManager = parentFragmentManager
