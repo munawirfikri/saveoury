@@ -4,7 +4,6 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.munawirfikri.saveoury.data.source.local.SharedPreference
 import com.munawirfikri.saveoury.data.source.remote.network.ApiConfig
 import com.munawirfikri.saveoury.data.source.remote.response.FoodPostItem
 import com.munawirfikri.saveoury.data.source.remote.response.FoodPostResponse
@@ -16,7 +15,7 @@ import retrofit2.Response
 class HomeViewModel : ViewModel() {
 
     private val _foodPost = MutableLiveData<List<FoodPostItem>>()
-    val foodPost = _foodPost
+    val foodPost: LiveData<List<FoodPostItem>> = _foodPost
 
     private val _user = MutableLiveData<User>()
     val user = _user
@@ -39,9 +38,8 @@ class HomeViewModel : ViewModel() {
             ) {
                 _isLoading.value = false
                 if (response.isSuccessful){
-                    val data = response.body()
-                    data?.map {
-                        Log.d("Daftar Makanan", data.toString())
+                    response.body()?.map {
+                        _foodPost.value = it.items
                     }
                 }else{
                     Log.e(TAG, "onFailure: ${response.message()}")

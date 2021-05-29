@@ -40,4 +40,8 @@
     <string name="keluar">Keluar</string>
     <string name="lokasi_kamu">Lokasi kamu</string>
     <string name="jalan_kakap_no_7">Jalan Kakap, No.7</string>
+    <string name="deskripsi_postingan">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</string>
+    <string name="tersedia">Tersedia</string>
+    <string name="nama_makanan">Nama makanan</string>
+    <string name="image_post">Image Post</string>
 </resources>

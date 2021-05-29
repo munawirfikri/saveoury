@@ -1,5 +1,6 @@
 package com.munawirfikri.saveoury.data.source.remote.network
 
+import com.munawirfikri.saveoury.data.source.remote.response.FoodPostItem
 import com.munawirfikri.saveoury.data.source.remote.response.FoodPostResponse
 import com.munawirfikri.saveoury.data.source.remote.response.PlaceResponse
 import com.munawirfikri.saveoury.data.source.remote.response.UserResponse
