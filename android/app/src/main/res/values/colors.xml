@@ -14,6 +14,7 @@
     <color name="secondary">#F58634</color>
     <color name="secondary_variant">#C05200</color>
     <color name="color_accent">#f2f2f2</color>
+    <color name="red">#EF4F4F</color>
 
     <!-- Here you can add color of your choice  -->
     <color name="ucrop_color_toolbar">@color/teal_200</color>

@@ -1,6 +1,7 @@
 package com.munawirfikri.saveoury.ui.main.home
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -28,6 +29,7 @@ class HomeFragment : Fragment(){
         if(activity != null){
             sharedPref = SharedPreference(this.requireContext())
             val city = sharedPref.getValueString("city")
+            Log.d("Data User", sharedPref.getValueString("photo").toString())
             homeViewModel.showFoodPost(city.toString())
         }
         super.onViewCreated(view, savedInstanceState)

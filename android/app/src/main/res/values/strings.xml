@@ -35,4 +35,7 @@
     <string name="password_not_valid">Minimal 8 karakter!</string>
     <string name="password_not_same">Password tidak sama!</string>
     <string name="back_button">back_button</string>
+    <string name="riwayat">Riwayat</string>
+    <string name="masih_kosong">Masih kosong</string>
+    <string name="keluar">Keluar</string>
 </resources>

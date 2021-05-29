@@ -41,7 +41,7 @@ class HomeViewModel : ViewModel() {
                 if (response.isSuccessful){
                     val data = response.body()
                     data?.map {
-                        Log.d(TAG, data.toString())
+                        Log.d("Daftar Makanan", data.toString())
                     }
                 }else{
                     Log.e(TAG, "onFailure: ${response.message()}")
