@@ -14,6 +14,7 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import com.google.android.material.snackbar.Snackbar
 import com.munawirfikri.saveoury.R
+import com.munawirfikri.saveoury.data.source.local.SharedPreference
 import com.munawirfikri.saveoury.databinding.FragmentRegisterAddressBinding
 import com.munawirfikri.saveoury.ui.main.MainActivity
 import com.munawirfikri.saveoury.ui.register.RegisterViewModel
@@ -30,6 +31,7 @@ class RegisterAddressFragment : Fragment(), View.OnClickListener {
 
 
     private val registerViewModel: RegisterViewModel by viewModels()
+    private lateinit var sharedPref: SharedPreference
 
     companion object {
         var EXTRA_EMAIL = "extra_email"
@@ -44,7 +46,7 @@ class RegisterAddressFragment : Fragment(), View.OnClickListener {
     ): View {
         // Inflate the layout for this fragment
         binding = FragmentRegisterAddressBinding.inflate(layoutInflater, container, false)
-
+        sharedPref = SharedPreference(this.requireContext())
         val photo = arguments?.getString(EXTRA_PHOTO)
         Log.d("hasil photo", photo.toString())
 
@@ -95,6 +97,15 @@ class RegisterAddressFragment : Fragment(), View.OnClickListener {
                     registerViewModel.registerUser(name, email, password, phoneNumber,address,city)
                     registerViewModel.user.observe(viewLifecycleOwner, {user ->
                         if (user != null){
+                            sharedPref.run {
+                                save("token", user.tokenType.toString() + " " + user.accessToken.toString())
+                                save("name", user.user.name.toString())
+                                save("email", user.user.email.toString())
+                                save("address", user.user.address.toString())
+                                save("phoneNumber", user.user.phoneNumber.toString())
+                                save("city", user.user.city.toString())
+                                save("photo", user.user.profilePhotoUrl.toString())
+                            }
                             val photo = arguments?.getString(EXTRA_PHOTO)
                             registerViewModel.uploadPhotoUser(user.tokenType.toString() + " " + user.accessToken.toString(), photo.toString())
                             val intent = Intent(context, MainActivity::class.java)
