@@ -11,25 +11,43 @@
         android:id="@+id/header"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
+        android:orientation="horizontal"
         android:paddingHorizontal="24dp"
+        android:gravity="center_vertical"
         android:background="@color/white"
         android:paddingVertical="30dp"
         >
-        <TextView
+        <androidx.appcompat.widget.AppCompatImageButton
+            android:id="@+id/iv_back"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/poppins_medium"
-            android:textSize="22sp"
-            android:textColor="@color/black"
-            android:text="@string/daftar" />
-        <TextView
+            android:paddingVertical="12dp"
+            android:paddingStart="0dp"
+            android:backgroundTint="@color/white"
+            android:src="@drawable/ic_back"
+            android:layout_marginEnd="20dp"
+            />
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="14sp"
-            android:textColor="@color/grey"
-            android:fontFamily="@font/poppins_light"
-            android:text="@string/berbagi_tak_perlu_menunggu_kaya" />
+            android:orientation="vertical"
+            >
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/poppins_medium"
+                android:textSize="22sp"
+                android:textColor="@color/black"
+                android:text="@string/daftar" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="14sp"
+                android:textColor="@color/grey"
+                android:fontFamily="@font/poppins_light"
+                android:text="@string/berbagi_tak_perlu_menunggu_kaya" />
+        </LinearLayout>
+
     </LinearLayout>
 
     <LinearLayout

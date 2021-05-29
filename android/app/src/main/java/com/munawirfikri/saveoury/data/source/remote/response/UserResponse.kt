@@ -4,10 +4,10 @@ import com.google.gson.annotations.SerializedName
 
 data class UserResponse(
 	@field:SerializedName("data")
-	val data: Data
+	val data: UserData
 )
 
-data class Data(
+data class UserData(
 
 	@field:SerializedName("access_token")
 	val accessToken: String? = null,

@@ -22,6 +22,7 @@ import io.reactivex.Observable
 import io.reactivex.Observable.combineLatest
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.FlowPreview
+import java.io.File
 
 class RegisterFragment : Fragment(), View.OnClickListener {
 
@@ -43,6 +44,7 @@ class RegisterFragment : Fragment(), View.OnClickListener {
         profileBinding = binding.contentProfile
         profileBinding.imgProfile.setOnClickListener(this)
         binding.btnLanjut.setOnClickListener(this)
+        binding.ivBack.setOnClickListener(this)
         return binding.root
     }
 
@@ -62,7 +64,7 @@ class RegisterFragment : Fragment(), View.OnClickListener {
             val passwordStream = RxTextView.textChanges(binding.etPassword)
                 .skipInitialValue()
                 .map { password ->
-                    password.length < 6
+                    password.length < 8
                 }
             passwordStream.subscribe {
                 showPasswordMinimalAlert(it)
@@ -105,7 +107,6 @@ class RegisterFragment : Fragment(), View.OnClickListener {
     fun pickProfileImage(view: View) {
         ImagePicker.with(this)
             // Crop Square image
-            .galleryOnly()
             .cropSquare()
             .setImageProviderInterceptor { imageProvider -> // Intercept ImageProvider
                 Log.d("ImagePicker", "Selected ImageProvider: " + imageProvider.name)
@@ -115,6 +116,7 @@ class RegisterFragment : Fragment(), View.OnClickListener {
             }
             // Image resolution will be less than 512 x 512
             .maxResultSize(200, 200)
+            .saveDir(File(requireActivity().cacheDir, "user"))
             .start(PROFILE_IMAGE_REQ_CODE)
     }
 
@@ -145,6 +147,7 @@ class RegisterFragment : Fragment(), View.OnClickListener {
     @ExperimentalCoroutinesApi
     override fun onClick(v: View?) {
         when(v?.id){
+            R.id.iv_back -> activity?.finish()
             R.id.imgProfile -> pickProfileImage(v)
             R.id.btn_lanjut -> {
 
@@ -155,7 +158,7 @@ class RegisterFragment : Fragment(), View.OnClickListener {
 
                 mBundle.putString(RegisterAddressFragment.EXTRA_EMAIL, email)
                 mBundle.putString(RegisterAddressFragment.EXTRA_PASSWORD, password)
-                mBundle.putString(RegisterAddressFragment.EXTRA_PHOTO, mProfileUri.toString())
+                mBundle.putString(RegisterAddressFragment.EXTRA_PHOTO, mProfileUri?.lastPathSegment.toString())
 
                 val mAddressFragment = RegisterAddressFragment()
                 val mFragmentManager = parentFragmentManager

@@ -4,6 +4,7 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.munawirfikri.saveoury.data.source.local.SharedPreference
 import com.munawirfikri.saveoury.data.source.remote.network.ApiConfig
 import com.munawirfikri.saveoury.data.source.remote.response.FoodPostItem
 import com.munawirfikri.saveoury.data.source.remote.response.FoodPostResponse
@@ -20,21 +21,17 @@ class HomeViewModel : ViewModel() {
     private val _user = MutableLiveData<User>()
     val user = _user
 
+
     private val _isLoading = MutableLiveData<Boolean>()
     val isLoading: LiveData<Boolean> = _isLoading
 
     companion object{
         private const val TAG = "HomeViewModel"
-        private const val CITY = "Pekanbaru"
     }
 
-    init {
-        findFoodPost()
-    }
-
-    private fun findFoodPost(){
+    fun showFoodPost(city: String){
         _isLoading.value = true
-        val client = ApiConfig.provideSaveouryApiService().getFoodPost(CITY)
+        val client = ApiConfig.provideSaveouryApiService().getFoodPost(city)
         client.enqueue(object : Callback<List<FoodPostResponse>> {
             override fun onResponse(
                 call: Call<List<FoodPostResponse>>,

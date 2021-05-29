@@ -74,6 +74,7 @@ class RegisterAddressFragment : Fragment(), View.OnClickListener {
 
         if (arguments != null) {
             binding.btnDaftarSekarang.setOnClickListener(this)
+            binding.ivBack.setOnClickListener(this)
         }
 
         return binding.root
@@ -81,6 +82,7 @@ class RegisterAddressFragment : Fragment(), View.OnClickListener {
 
     override fun onClick(v: View?) {
         when(v?.id){
+            R.id.iv_back -> parentFragmentManager.popBackStack()
             R.id.btn_daftar_sekarang -> {
                 val email = arguments?.getString(EXTRA_EMAIL).toString()
                 val password = arguments?.getString(EXTRA_PASSWORD).toString()
@@ -89,27 +91,26 @@ class RegisterAddressFragment : Fragment(), View.OnClickListener {
                 val address = binding.etAlamatRumah.text.toString()
                 val city = binding.etKota.text.toString()
 
-                registerViewModel.registerUser(name, email, password, phoneNumber,address,city)
-
-                registerViewModel.user.observe(viewLifecycleOwner, {user ->
-                    if (user != null){
-
-                        val intent = Intent(context, MainActivity::class.java)
-                        startActivity(intent)
-                        activity?.finish()
-                    }
-                })
-
-                registerViewModel.itExist.observe(viewLifecycleOwner, {
-                    if(it == false){
-                        Snackbar.make(binding.root, "Something went wrong", Snackbar.LENGTH_SHORT).show()
-                    }
-                })
-
-                registerViewModel.isLoading.observe(this, {
+                if (name.isNotEmpty() && phoneNumber.isNotEmpty() && address.isNotEmpty() && city.isNotEmpty()){
+                    registerViewModel.registerUser(name, email, password, phoneNumber,address,city)
+                    registerViewModel.user.observe(viewLifecycleOwner, {user ->
+                        if (user != null){
+                            val photo = arguments?.getString(EXTRA_PHOTO)
+                            registerViewModel.uploadPhotoUser(user.tokenType.toString() + " " + user.accessToken.toString(), photo.toString())
+                            val intent = Intent(context, MainActivity::class.java)
+                            startActivity(intent)
+                            activity?.finish()
+                        }
+                    })
+                    registerViewModel.itExist.observe(viewLifecycleOwner, {
+                        if(it == false){
+                            Snackbar.make(binding.root, "Something went wrong", Snackbar.LENGTH_SHORT).show()
+                        }
+                    })
+                    registerViewModel.isLoading.observe(this, {
                         binding.progressBar.visibility = if (it) View.VISIBLE else View.GONE
                     })
-
+                }
             }
         }
     }

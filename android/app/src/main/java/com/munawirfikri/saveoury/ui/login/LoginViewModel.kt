@@ -5,16 +5,16 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.munawirfikri.saveoury.data.source.remote.network.ApiConfig
+import com.munawirfikri.saveoury.data.source.remote.response.UserData
 import com.munawirfikri.saveoury.data.source.remote.response.UserResponse
-import com.munawirfikri.saveoury.data.source.remote.response.UserEntity
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
 class LoginViewModel: ViewModel() {
 
-    private val _user = MutableLiveData<UserEntity>()
-    val user: LiveData<UserEntity> =  _user
+    private val _user = MutableLiveData<UserData>()
+    val user: LiveData<UserData> =  _user
 
     private val _isLoading = MutableLiveData<Boolean>()
     val isLoading: LiveData<Boolean> = _isLoading
@@ -33,7 +33,7 @@ class LoginViewModel: ViewModel() {
             ) {
                 _isLoading.value = false
                 if (response.isSuccessful){
-                    _user.value = response.body()?.data?.user
+                    _user.value = response.body()?.data
                 }else{
                     Log.e("Login", "gagal: ${response.message()}")
                     _itExist.value = false

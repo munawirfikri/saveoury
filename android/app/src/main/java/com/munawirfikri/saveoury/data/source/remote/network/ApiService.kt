@@ -40,9 +40,10 @@ interface ApiService {
         @Field("password") password: String
     ): Call<UserResponse>
 
-    @FormUrlEncoded
+    @Multipart
     @POST("user/photo")
     fun uploadPhotoUser(
-        @Part("file") file: MultipartBody.Part
+        @Header("Authorization") authorization: String,
+        @Part file: MultipartBody.Part
     ): Call<UserResponse>
 }
