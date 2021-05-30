@@ -13,6 +13,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.github.dhaval2404.imagepicker.ImagePicker
 import com.github.dhaval2404.imagepicker.util.IntentUtils
+import com.google.android.material.snackbar.Snackbar
 import com.munawirfikri.saveoury.R
 import com.munawirfikri.saveoury.data.source.local.SharedPreference
 import com.munawirfikri.saveoury.databinding.FragmentPostBinding
@@ -108,11 +109,11 @@ class PostFragment : Fragment(), View.OnClickListener {
                 val location = sharedPref.getValueString("city").toString()
 
                 if(authorization.isNotEmpty() && image.isNotEmpty() && foodName.isNotEmpty() && foodDesc.isNotEmpty() && location.isNotEmpty()){
-                    Log.d("berhasil", "berhasil masuk")
                     postViewModel.addFoodPost(
                         authorization, image,
                         foodName, foodDesc,
                         foodCategory.toString(), location, "0", "1")
+                    Snackbar.make(binding.root, "Postingan berhasil ditambahkan", Snackbar.LENGTH_SHORT).show()
                 }
 
 

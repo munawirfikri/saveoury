@@ -71,7 +71,7 @@
                 android:src="@color/primary_variant"/>
 
             <TextView
-                android:padding="2dp"
+                android:paddingVertical="8dp"
                 android:fontFamily="@font/poppins_light"
                 android:textSize="12sp"
                 android:maxLines="3"
