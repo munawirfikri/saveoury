@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
+    android:layout_marginVertical="12dp"
     android:layout_height="match_parent">
-
     <androidx.cardview.widget.CardView
         android:background="@color/white"
         android:layout_width="match_parent"
@@ -35,20 +35,21 @@
                     android:orientation="vertical"
                     >
                     <TextView
-                        android:id="@+id/nama_user"
+                        android:id="@+id/tv_food_name"
                         android:textColor="@color/black"
                         android:fontFamily="@font/poppins_medium"
                         android:textSize="14sp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/nama_lengkap"
+                        android:text="@string/nama_makanan"
                         />
                     <TextView
+                        android:id="@+id/nama_user"
                         android:textSize="12sp"
                         android:fontFamily="@font/poppins"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/nama_makanan"
+                        android:text="@string/nama_lengkap"
                         />
                 </LinearLayout>
                 <TextView
@@ -61,12 +62,14 @@
                     android:textAlignment="viewEnd"
                     />
             </LinearLayout>
+
             <ImageView
                 android:id="@+id/iv_food_image"
                 android:layout_width="match_parent"
                 android:layout_height="350dp"
-                android:src="@drawable/dummypost"
-                android:contentDescription="@string/image_post" />
+                android:contentDescription="@string/image_post"
+                android:src="@color/primary_variant"/>
+
             <TextView
                 android:padding="2dp"
                 android:fontFamily="@font/poppins_light"
@@ -82,5 +85,4 @@
                 />
         </LinearLayout>
     </androidx.cardview.widget.CardView>
-
 </RelativeLayout>

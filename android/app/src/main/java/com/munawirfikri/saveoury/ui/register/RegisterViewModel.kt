@@ -60,7 +60,7 @@ class RegisterViewModel: ViewModel() {
 
         client.enqueue(object : Callback<UserResponse>{
             override fun onResponse(call: Call<UserResponse>, response: Response<UserResponse>) {
-                Log.e("Photo", response.toString())
+                Log.e("Photo", response.body().toString())
             }
 
             override fun onFailure(call: Call<UserResponse>, t: Throwable) {

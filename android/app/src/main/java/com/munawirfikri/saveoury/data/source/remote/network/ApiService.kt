@@ -20,7 +20,7 @@ interface ApiService {
     @GET("foodpost")
     fun getFoodPost(
         @Query("location") city: String? = "Pekanbaru"
-    ): Call<List<FoodPostResponse>>
+    ): Call<FoodPostResponse>
 
     @FormUrlEncoded
     @POST("register")

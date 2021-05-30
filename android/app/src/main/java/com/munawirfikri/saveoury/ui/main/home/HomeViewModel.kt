@@ -31,22 +31,20 @@ class HomeViewModel : ViewModel() {
     fun showFoodPost(city: String){
         _isLoading.value = true
         val client = ApiConfig.provideSaveouryApiService().getFoodPost(city)
-        client.enqueue(object : Callback<List<FoodPostResponse>> {
+        client.enqueue(object : Callback<FoodPostResponse> {
             override fun onResponse(
-                call: Call<List<FoodPostResponse>>,
-                response: Response<List<FoodPostResponse>>
+                call: Call<FoodPostResponse>,
+                response: Response<FoodPostResponse>
             ) {
                 _isLoading.value = false
                 if (response.isSuccessful){
-                    response.body()?.map {
-                        _foodPost.value = it.items
-                    }
+                    _foodPost.value = response.body()?.items
                 }else{
                     Log.e(TAG, "onFailure: ${response.message()}")
                 }
             }
 
-            override fun onFailure(call: Call<List<FoodPostResponse>>, t: Throwable) {
+            override fun onFailure(call: Call<FoodPostResponse>, t: Throwable) {
                 _isLoading.value = false
                 Log.e(TAG, "onFailure: ${t.message.toString()}")
             }
