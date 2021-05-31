@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="280dp"
+    android:layout_marginTop="24dp"
+    app:cardCornerRadius="12dp"
+    app:cardPreventCornerOverlap="false"
+    app:cardUseCompatPadding="true">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/txtCamera"
+            style="@style/TitleTextStyle"
+            android:fontFamily="@font/poppins_medium"
+            android:textSize="16sp"
+            android:text="@string/upload_foto_makanan_disini" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/imgCamera"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@id/txtCamera"
+            android:layout_marginTop="3dp"
+            android:background="@color/grey"
+            android:scaleType="centerCrop" />
+
+    </RelativeLayout>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fab_add_camera_photo"
+        style="@style/FabStyle"
+        app:srcCompat="@drawable/ic_camera" />
+
+</androidx.cardview.widget.CardView>

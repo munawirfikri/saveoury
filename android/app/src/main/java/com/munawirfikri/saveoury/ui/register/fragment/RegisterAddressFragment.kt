@@ -104,10 +104,10 @@ class RegisterAddressFragment : Fragment(), View.OnClickListener {
                                 save("address", user.user.address.toString())
                                 save("phoneNumber", user.user.phoneNumber.toString())
                                 save("city", user.user.city.toString())
-                                save("photo", user.user.profilePhotoUrl.toString())
                             }
                             val photo = arguments?.getString(EXTRA_PHOTO)
                             registerViewModel.uploadPhotoUser(user.tokenType.toString() + " " + user.accessToken.toString(), photo.toString())
+                            sharedPref.save("photo", user.user.profilePhotoUrl.toString())
                             val intent = Intent(context, MainActivity::class.java)
                             startActivity(intent)
                             activity?.finish()

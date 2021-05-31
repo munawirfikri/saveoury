@@ -44,4 +44,11 @@
     <string name="tersedia">Tersedia</string>
     <string name="nama_makanan">Nama makanan</string>
     <string name="image_post">Image Post</string>
+    <string name="ketuk_untuk_lihat_detail">Ketuk untuk lihat detail</string>
+    <string name="belum_ada_yang_berbagi_makanan_saat_ini">Belum ada yang berbagi makanan saat ini.</string>
+    <string name="hari_ini_masak_apa_bund_bagiin_yuk">Hari ini masak apa bund? Bagiin yuk!</string>
+    <string name="upload_foto_makanan_disini">Upload foto makanan disini</string>
+    <string name="deskripsikan_makanan">Deskripsikan makananmu</string>
+    <string name="makanan_berat">Makanan Berat</string>
+    <string name="makanan_ringan">Makanan Ringan</string>
 </resources>

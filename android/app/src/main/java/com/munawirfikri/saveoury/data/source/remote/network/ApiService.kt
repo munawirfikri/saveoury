@@ -1,6 +1,5 @@
 package com.munawirfikri.saveoury.data.source.remote.network
 
-import com.munawirfikri.saveoury.data.source.remote.response.FoodPostItem
 import com.munawirfikri.saveoury.data.source.remote.response.FoodPostResponse
 import com.munawirfikri.saveoury.data.source.remote.response.PlaceResponse
 import com.munawirfikri.saveoury.data.source.remote.response.UserResponse
@@ -20,7 +19,20 @@ interface ApiService {
     @GET("foodpost")
     fun getFoodPost(
         @Query("location") city: String? = "Pekanbaru"
-    ): Call<List<FoodPostResponse>>
+    ): Call<FoodPostResponse>
+
+    @Multipart
+    @POST("foodpost/add")
+    fun addFoodPost(
+        @Header("Authorization") authorization: String,
+        @Part file: MultipartBody.Part,
+        @Part foodName: MultipartBody.Part,
+        @Part foodDesc: MultipartBody.Part,
+        @Part foodCategory: MultipartBody.Part,
+        @Part foodLocation: MultipartBody.Part,
+        @Part IsVerifiedFood: MultipartBody.Part,
+        @Part IsAvailableFood: MultipartBody.Part
+    ): Call<FoodPostResponse>
 
     @FormUrlEncoded
     @POST("register")

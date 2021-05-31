@@ -13,4 +13,30 @@
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
     </style>
+    <style name="FabStyle">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_gravity">end|bottom</item>
+        <item name="srcCompat">@drawable/ic_camera</item>
+        <item name="backgroundTint">@color/primary_variant</item>
+        <item name="tint">@color/white</item>
+        <item name="useCompatPadding">true</item>
+    </style>
+
+    <style name="ImageButtonStyle">
+        <item name="android:layout_width">48dp</item>
+        <item name="android:layout_height">48dp</item>
+        <item name="android:scaleType">centerInside</item>
+        <item name="tint">@color/color_accent</item>
+    </style>
+
+    <style name="TitleTextStyle">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">48dp</item>
+        <item name="android:gravity">center|start</item>
+        <item name="android:paddingStart">16dp</item>
+        <item name="android:paddingEnd">16dp</item>
+        <item name="android:textAppearance">@style/TextAppearance.AppCompat.Title</item>
+        <item name="android:textColor">@color/primary_variant</item>
+    </style>
 </resources>
