@@ -5,6 +5,7 @@ namespace App\Http\Controllers\API;
 use Exception;
 use App\Models\FoodPost;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Http;
 use App\Helpers\ResponseFormatter;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
@@ -14,11 +15,29 @@ class FoodPostController extends Controller
 {
     public function all(Request $request)
     {
-
+        $id = $request->input('id');
         $id_user = $request->input('id_user');
         $food_name = $request->input('food_name');
         $category = $request->input('category');
         $location = $request->input('location');
+
+        if($id)
+        {
+            $foodPost = FoodPost::query()->where('id', $id)->get();
+
+            if($foodPost) {
+                return ResponseFormatter::success(
+                    $foodPost,
+                    'Data food post berhasil diambil'
+                );
+            }else{
+                return ResponseFormatter::error(
+                    null,
+                    'Data food post tidak ada',
+                    404
+                );
+            }
+        }
 
         if($id_user)
         {
@@ -38,7 +57,7 @@ class FoodPostController extends Controller
             }
         }
 
-        $foodPost = FoodPost::with(['user'])->where('location', $location)->get();
+        $foodPost = FoodPost::with(['user'])->where('location', $location)->where('is_available', true)->where('is_verified', true)->get();
 
         if ($food_name)
         {
@@ -58,6 +77,7 @@ class FoodPostController extends Controller
 
     public function add(Request $request)
     {
+        $is_verified = 0;
 
         $validator = Validator::make($request->all(), [
             'file' => 'required|image|max:2048',
@@ -88,10 +108,12 @@ class FoodPostController extends Controller
                 'food_desc' => $request->food_desc,
                 'category' => $request->category,
                 'location' => $request->location,
-                'is_verified' => $request->is_verified,
-                'is_available' => $request->is_available,
+                'is_verified' => false,
+                'is_available' => true,
                 'picturePath' => $file
             ]);
+
+
 
             $foodPost = FoodPost::with('user')->find($newFood->id);
 
@@ -111,4 +133,6 @@ class FoodPostController extends Controller
 
         return ResponseFormatter::success($foodPost,'Food Post berhasil diperbarui');
     }
+
+
 }

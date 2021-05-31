@@ -13,7 +13,7 @@ class FoodPost extends Model
     use HasFactory, SoftDeletes;
 
     protected $fillable = [
-        'picturePath', 'id_user', 'taken_by', 'category', 'location', 'food_name', 'food_desc', 'is_verified', 'is_available'
+        'picturePath', 'id_user', 'category', 'location', 'food_name', 'food_desc', 'is_verified', 'is_available'
     ];
 
     public function user()
