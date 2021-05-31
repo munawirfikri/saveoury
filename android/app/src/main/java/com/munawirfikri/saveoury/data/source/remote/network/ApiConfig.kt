@@ -26,7 +26,7 @@ object ApiConfig {
 
     fun provideSaveouryApiService(): ApiService {
         val retrofit = Retrofit.Builder()
-            .baseUrl("https://saveoury.herokuapp.com/api/")
+            .baseUrl("https://saveoury-api.herokuapp.com/api/")
             .addConverterFactory(GsonConverterFactory.create())
             .client(provideOkHttpClient())
             .build()

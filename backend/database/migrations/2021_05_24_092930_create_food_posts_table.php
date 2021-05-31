@@ -17,14 +17,12 @@ class CreateFoodPostsTable extends Migration
             $table->id();
 
             $table->integer('id_user');
-            $table->integer('taken_by')->nullable();
-
             $table->string('food_name')->nullable();
             $table->string('food_desc')->nullable();
             $table->string('category')->nullable();
             $table->string('location')->nullable();
             $table->boolean('is_verified')->default(false);
-            $table->boolean('is_available')->default(false);
+            $table->boolean('is_available')->default(true);
 
             $table->text('picturePath')->nullable();
             $table->softDeletes();
