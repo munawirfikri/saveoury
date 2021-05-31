@@ -41,6 +41,21 @@ class PostFragment : Fragment(), View.OnClickListener {
         return binding.root
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        if (activity!=null){
+            postViewModel.isValidImage.observe(viewLifecycleOwner, {
+                if (it != 1){
+                    binding.btnSubmit.isEnabled = false
+                    Snackbar.make(binding.root, "Foto tidak valid, silahkan unggah foto makanan!", Snackbar.LENGTH_SHORT).show()
+                }else{
+                    binding.btnSubmit.isEnabled = true
+                }
+            })
+            postViewModel.isLoading.observe(viewLifecycleOwner, {
+                binding.progressBar.visibility = if (it) View.VISIBLE else View.GONE
+            })
+        }
+    }
 
     @Suppress("DEPRECATION")
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -53,6 +68,8 @@ class PostFragment : Fragment(), View.OnClickListener {
                     CAMERA_IMAGE_REQ_CODE -> {
                         mCameraUri = uri
                         binding.imageContainer.imgCamera.setImageURI(uri)
+                        val image = mCameraUri?.lastPathSegment.toString()
+                        postViewModel.predictImage(image)
                     }
                 }
             }
@@ -107,16 +124,19 @@ class PostFragment : Fragment(), View.OnClickListener {
                 val foodDesc = binding.etFoodDesc.text.toString()
                 val foodCategory = if(binding.radioBerat.isChecked) binding.radioBerat.text else if (binding.radioRingan.isChecked) binding.radioRingan.text else null
                 val location = sharedPref.getValueString("city").toString()
-
                 if(authorization.isNotEmpty() && image.isNotEmpty() && foodName.isNotEmpty() && foodDesc.isNotEmpty() && location.isNotEmpty()){
+                    binding.etFoodName.text?.clear()
+                    binding.etFoodDesc.text?.clear()
+                    binding.radioCategory.clearCheck()
+                    binding.imageContainer.imgCamera.setImageResource(R.color.grey)
                     postViewModel.addFoodPost(
                         authorization, image,
                         foodName, foodDesc,
-                        foodCategory.toString(), location, "0", "1")
+                        foodCategory.toString(), location, "1", "1")
                     Snackbar.make(binding.root, "Postingan berhasil ditambahkan", Snackbar.LENGTH_SHORT).show()
+                }else{
+                    Snackbar.make(binding.root, "Silahkan diisi semua terlebih dahulu", Snackbar.LENGTH_SHORT).show()
                 }
-
-
 
             }
         }

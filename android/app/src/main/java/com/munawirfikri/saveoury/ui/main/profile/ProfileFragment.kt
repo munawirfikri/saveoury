@@ -1,14 +1,14 @@
 package com.munawirfikri.saveoury.ui.main.profile
 
-import android.app.AlertDialog
-import android.content.DialogInterface
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
 import com.munawirfikri.saveoury.R
 import com.munawirfikri.saveoury.data.source.local.SharedPreference
@@ -18,6 +18,7 @@ import com.munawirfikri.saveoury.ui.login.LoginActivity
 class ProfileFragment : Fragment(), View.OnClickListener {
 
     private val profileViewModel: ProfileViewModel by viewModels()
+    private var profileAdapter: ProfileAdapter? = null
     private lateinit var sharedPref : SharedPreference
     private var _binding: FragmentProfileBinding? = null
 
@@ -42,6 +43,29 @@ class ProfileFragment : Fragment(), View.OnClickListener {
             .placeholder(R.drawable.ic_add_photo)
             .into(binding.profile.imgProfile)
         return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        if (activity!=null){
+            profileAdapter = ProfileAdapter()
+            val userId = sharedPref.getValueString("id_user").toString()
+            Log.d("userid", userId)
+            val city = sharedPref.getValueString("city").toString()
+            profileViewModel.getFoodPostByUserId(city, userId)
+            profileViewModel.foodPost.observe(viewLifecycleOwner, {
+                profileAdapter?.setData(it)
+                profileAdapter?.notifyDataSetChanged()
+                binding.tvKosong.visibility = if (it.isNotEmpty()) View.GONE else View.VISIBLE
+            })
+            profileViewModel.isLoading.observe(viewLifecycleOwner, {
+                binding.progressBar.visibility = if (it) View.VISIBLE else View.GONE
+            })
+            with(binding.rvMyFood){
+                this.layoutManager = LinearLayoutManager(context)
+                this.setHasFixedSize(true)
+                this.adapter = profileAdapter
+            }
+        }
     }
 
     override fun onDestroyView() {

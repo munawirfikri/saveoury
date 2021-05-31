@@ -35,7 +35,7 @@
     <string name="password_not_valid">Minimal 8 karakter!</string>
     <string name="password_not_same">Password tidak sama!</string>
     <string name="back_button">back_button</string>
-    <string name="riwayat">Riwayat</string>
+    <string name="riwayat">Riwayat Postingan</string>
     <string name="masih_kosong">Masih kosong</string>
     <string name="keluar">Keluar</string>
     <string name="lokasi_kamu">Lokasi kamu</string>
@@ -51,4 +51,7 @@
     <string name="deskripsikan_makanan">Deskripsikan makananmu</string>
     <string name="makanan_berat">Makanan Berat</string>
     <string name="makanan_ringan">Makanan Ringan</string>
+    <string name="klik_disini_untuk_ubah_profil">Klik disini untuk ubah profil</string>
+    <string name="foto_makanan">Foto makanan</string>
+    <string name="status_makanan">Status makanan</string>
 </resources>

@@ -1,6 +1,7 @@
 package com.munawirfikri.saveoury.data.source.remote.network
 
 import com.munawirfikri.saveoury.data.source.remote.response.FoodPostResponse
+import com.munawirfikri.saveoury.data.source.remote.response.ImageResponse
 import com.munawirfikri.saveoury.data.source.remote.response.PlaceResponse
 import com.munawirfikri.saveoury.data.source.remote.response.UserResponse
 import okhttp3.MultipartBody
@@ -21,6 +22,12 @@ interface ApiService {
         @Query("location") city: String? = "Pekanbaru"
     ): Call<FoodPostResponse>
 
+    @GET("foodpost")
+    fun getFoodPostByUserId(
+        @Query("location") city: String? = "Pekanbaru",
+        @Query("id_user") id_user: String
+    ): Call<FoodPostResponse>
+
     @Multipart
     @POST("foodpost/add")
     fun addFoodPost(
@@ -33,6 +40,12 @@ interface ApiService {
         @Part IsVerifiedFood: MultipartBody.Part,
         @Part IsAvailableFood: MultipartBody.Part
     ): Call<FoodPostResponse>
+
+    @Multipart
+    @POST("/")
+    fun predictImage(
+        @Part file: MultipartBody.Part
+    ): Call<ImageResponse>
 
     @FormUrlEncoded
     @POST("register")

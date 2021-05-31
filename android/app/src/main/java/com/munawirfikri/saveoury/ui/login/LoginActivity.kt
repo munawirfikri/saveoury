@@ -52,6 +52,7 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
                         loginViewModel.user.observe(this, {user ->
                             if (user != null) {
                                 sharedPref.run {
+                                    save("id_user", user.user.id.toString())
                                     save("token", user.tokenType.toString() + " " + user.accessToken.toString())
                                     save("name", user.user.name.toString())
                                     save("email", user.user.email.toString())

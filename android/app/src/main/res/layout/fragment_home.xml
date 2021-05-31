@@ -100,13 +100,13 @@
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
         android:id="@+id/swipeContainer"
         android:layout_width="match_parent"
+        android:layout_marginBottom="36dp"
         android:layout_height="match_parent">
         <androidx.recyclerview.widget.RecyclerView
             android:layout_below="@+id/header"
             android:id="@+id/rv_home"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="40dp"
             app:layout_behavior="@string/appbar_scrolling_view_behavior"
             tools:listitem="@layout/item_post"/>
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>

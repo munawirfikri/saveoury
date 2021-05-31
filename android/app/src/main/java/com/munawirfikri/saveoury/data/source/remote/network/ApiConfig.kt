@@ -32,4 +32,13 @@ object ApiConfig {
             .build()
         return retrofit.create(ApiService::class.java)
     }
+
+    fun provideMLApiService(): ApiService {
+        val retrofit = Retrofit.Builder()
+            .baseUrl("http://34.67.221.254")
+            .addConverterFactory(GsonConverterFactory.create())
+            .client(provideOkHttpClient())
+            .build()
+        return retrofit.create(ApiService::class.java)
+    }
 }
