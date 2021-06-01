@@ -64,4 +64,7 @@
     <string name="kamu_belum_me_request_makanan_ini_yakin_ga_mau_cobain">Kamu belum me-request makanan ini. Yakin ga mau cobain?</string>
     <string name="masih_menunggu_respons_dari_pemilik_makanan_sabar_dulu_yaa">Masih menunggu respons dari pemilik makanan. Sabar dulu yaa!</string>
     <string name="sudah_tidak_tersedia_lagi_move_on_ya">Sudah tidak tersedia lagi. Move on ya!</string>
+    <string name="masukkan_kabupaten_kota_tempat_kamu_tinggal">Masukkan kabupaten/kota tempat kamu tinggal</string>
+    <string name="update_data">Update Data</string>
+    <string name="batalkan">Batalkan</string>
 </resources>

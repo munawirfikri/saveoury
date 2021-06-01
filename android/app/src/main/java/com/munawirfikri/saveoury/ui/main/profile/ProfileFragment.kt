@@ -1,19 +1,24 @@
 package com.munawirfikri.saveoury.ui.main.profile
 
+import android.app.Activity
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
+import com.github.dhaval2404.imagepicker.ImagePicker
 import com.munawirfikri.saveoury.R
 import com.munawirfikri.saveoury.data.source.local.SharedPreference
 import com.munawirfikri.saveoury.databinding.FragmentProfileBinding
 import com.munawirfikri.saveoury.ui.login.LoginActivity
+import java.io.File
 
 class ProfileFragment : Fragment(), View.OnClickListener {
 
@@ -25,6 +30,13 @@ class ProfileFragment : Fragment(), View.OnClickListener {
     // This property is only valid between onCreateView and
     // onDestroyView.
     private val binding get() = _binding!!
+
+    companion object {
+        private const val PROFILE_IMAGE_REQ_CODE = 101
+    }
+
+    private var mProfileUri: Uri? = null
+
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View {
@@ -42,6 +54,7 @@ class ProfileFragment : Fragment(), View.OnClickListener {
             .centerCrop()
             .placeholder(R.drawable.ic_person)
             .into(binding.profile.imgProfile)
+        binding.tvEditProfil.setOnClickListener(this)
         return binding.root
     }
 
@@ -68,6 +81,47 @@ class ProfileFragment : Fragment(), View.OnClickListener {
         }
     }
 
+    @Suppress("UNUSED_PARAMETER")
+    fun pickProfileImage(view: View) {
+        ImagePicker.with(this)
+            // Crop Square image
+            .cropSquare()
+            .setImageProviderInterceptor { imageProvider -> // Intercept ImageProvider
+                Log.d("ImagePicker", "Selected ImageProvider: " + imageProvider.name)
+            }
+            .setDismissListener {
+                Log.d("ImagePicker", "Dialog Dismiss")
+            }
+            // Image resolution will be less than 512 x 512
+            .maxResultSize(200, 200)
+            .saveDir(File(requireActivity().cacheDir, "user"))
+            .start(PROFILE_IMAGE_REQ_CODE)
+    }
+
+    @Suppress("DEPRECATION")
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        when (resultCode) {
+            Activity.RESULT_OK -> {
+                // Uri object will not be null for RESULT_OK
+                val uri: Uri = data?.data!!
+                when (requestCode) {
+                    PROFILE_IMAGE_REQ_CODE -> {
+                        mProfileUri = uri
+                        binding.editProfile.profile.imgProfile.setImageURI(mProfileUri)
+                    }
+                }
+            }
+            ImagePicker.RESULT_ERROR -> {
+                Toast.makeText(context, ImagePicker.getError(data), Toast.LENGTH_SHORT).show()
+            }
+            else -> {
+                Toast.makeText(context, "Task Cancelled", Toast.LENGTH_SHORT).show()
+            }
+        }
+    }
+
+
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
@@ -80,6 +134,20 @@ class ProfileFragment : Fragment(), View.OnClickListener {
                 val intent = Intent(this.requireContext(), LoginActivity::class.java)
                 startActivity(intent)
                 requireActivity().finish()
+            }
+            R.id.tv_edit_profil -> {
+                binding.editProfile.root.visibility = View.VISIBLE
+                binding.editProfile.btnCancel.setOnClickListener {
+                    binding.editProfile.root.visibility = View.GONE
+                }
+                binding.editProfile.profile.imgProfile.setOnClickListener {
+                    pickProfileImage(it)
+                }
+                binding.editProfile.etNamaLengkap.hint = sharedPref.getValueString("name")
+                binding.editProfile.etEmail.hint = sharedPref.getValueString("email")
+                binding.editProfile.etAlamatRumah.hint = sharedPref.getValueString("address")
+                binding.editProfile.etNomorHp.hint = sharedPref.getValueString("phoneNumber")
+                binding.editProfile.etKota.hint = sharedPref.getValueString("city")
             }
         }
     }
