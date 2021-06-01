@@ -54,4 +54,14 @@
     <string name="klik_disini_untuk_ubah_profil">Klik disini untuk ubah profil</string>
     <string name="foto_makanan">Foto makanan</string>
     <string name="status_makanan">Status makanan</string>
+    <string name="waktu_post">Waktu post</string>
+    <string name="request">Request</string>
+    <string name="alamat_rumah2">Alamat Rumah | </string>
+    <string name="kontak_pemilik_makanan">Kontak Pemilik Makanan</string>
+    <string name="nomor_hp_wa">Nomor HP/WA    | </string>
+    <string name="daftar_request">Daftar Request</string>
+    <string name="status_berbagi">Status berbagi </string>
+    <string name="kamu_belum_me_request_makanan_ini_yakin_ga_mau_cobain">Kamu belum me-request makanan ini. Yakin ga mau cobain?</string>
+    <string name="masih_menunggu_respons_dari_pemilik_makanan_sabar_dulu_yaa">Masih menunggu respons dari pemilik makanan. Sabar dulu yaa!</string>
+    <string name="sudah_tidak_tersedia_lagi_move_on_ya">Sudah tidak tersedia lagi. Move on ya!</string>
 </resources>

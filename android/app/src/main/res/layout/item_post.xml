@@ -1,16 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_marginVertical="6dp"
     android:layout_height="wrap_content">
     <androidx.cardview.widget.CardView
         android:background="@color/white"
         android:layout_width="match_parent"
-        android:layout_height="500dp"
+        android:layout_height="wrap_content"
+        android:elevation="2dp"
         >
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:paddingBottom="12dp"
             android:orientation="vertical"
             >
             <LinearLayout
@@ -21,7 +24,6 @@
                 android:padding="12dp"
                 >
                 <de.hdodenhof.circleimageview.CircleImageView
-                    xmlns:app="http://schemas.android.com/apk/res-auto"
                     android:id="@+id/profile_image"
                     android:layout_width="50dp"
                     android:layout_height="50dp"
@@ -35,50 +37,79 @@
                     android:orientation="vertical"
                     >
                     <TextView
-                        android:id="@+id/tv_food_name"
+                        android:id="@+id/tv_nama_user"
                         android:textColor="@color/black"
                         android:fontFamily="@font/poppins_medium"
                         android:textSize="14sp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/nama_makanan"
+                        android:text="@string/nama_lengkap"
                         />
                     <TextView
-                        android:id="@+id/nama_user"
+                        android:id="@+id/tv_alamat_user"
                         android:textSize="12sp"
                         android:fontFamily="@font/poppins"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/nama_lengkap"
+                        android:text="@string/alamat_rumah"
                         />
                 </LinearLayout>
                 <TextView
-                    android:fontFamily="@font/poppins_medium"
-                    android:id="@+id/food_status"
+
+                    android:id="@+id/tv_item_status"
+                    android:textSize="14sp"
+                    android:fontFamily="@font/poppins"
                     android:textColor="@color/primary_variant"
+                    android:layout_marginStart="12dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/tersedia"
                     android:textAlignment="viewEnd"
                     />
             </LinearLayout>
-
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="250dp"
+                >
             <ImageView
                 android:id="@+id/iv_food_image"
                 android:layout_width="match_parent"
-                android:layout_height="350dp"
+                android:layout_height="match_parent"
                 android:contentDescription="@string/image_post"
                 android:src="@color/primary_variant"/>
-
+            </LinearLayout>
             <TextView
-                android:paddingVertical="8dp"
-                android:fontFamily="@font/poppins_light"
-                android:textSize="12sp"
+                android:layout_marginTop="8dp"
+                android:id="@+id/tv_food_name"
+                android:fontFamily="@font/poppins_medium"
+                android:textSize="14sp"
                 android:maxLines="3"
                 android:ellipsize="end"
                 android:textColor="@color/black"
                 android:layout_marginHorizontal="12dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/nama_makanan"
+                />
+            <TextView
+                android:id="@+id/tv_food_post_time"
+                android:textSize="12sp"
+                android:fontFamily="@font/poppins_medium"
+                android:textColor="@color/grey"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/waktu_post"
+                android:layout_marginHorizontal="12dp"
+                />
+            <TextView
                 android:id="@+id/tv_food_desc"
+                android:fontFamily="@font/poppins_light"
+                android:textSize="14sp"
+                android:layout_marginTop="2dp"
+                android:maxLines="4"
+                android:ellipsize="end"
+                android:textColor="@color/black"
+                android:layout_marginHorizontal="12dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/deskripsi_postingan"

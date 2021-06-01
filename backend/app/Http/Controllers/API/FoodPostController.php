@@ -23,7 +23,7 @@ class FoodPostController extends Controller
 
         if($id)
         {
-            $foodPost = FoodPost::query()->where('id', $id)->get();
+            $foodPost = FoodPost::with(['user'])->where('id', $id)->orderBy('created_at', 'desc')->get();
 
             if($foodPost) {
                 return ResponseFormatter::success(
@@ -41,7 +41,7 @@ class FoodPostController extends Controller
 
         if($id_user)
         {
-            $foodPost = FoodPost::query()->where('id_user', $id_user)->where('location', $location)->get();
+            $foodPost = FoodPost::query()->where('id_user', $id_user)->where('location', $location)->orderBy('created_at', 'desc')->get();
 
             if($foodPost) {
                 return ResponseFormatter::success(
@@ -57,16 +57,16 @@ class FoodPostController extends Controller
             }
         }
 
-        $foodPost = FoodPost::with(['user'])->where('location', $location)->where('is_available', true)->where('is_verified', true)->get();
+        $foodPost = FoodPost::with(['user'])->where('location', $location)->where('is_verified', true)->orderBy('created_at', 'desc')->get();
 
         if ($food_name)
         {
-            $foodPost = FoodPost::with(['user'])->where('food_name', 'like', '%' . $food_name . '%')->where('location', $location)->get();
+            $foodPost = FoodPost::with(['user'])->where('food_name', 'like', '%' . $food_name . '%')->where('location', $location)->orderBy('created_at', 'desc')->get();
         }
 
         if ($category)
         {
-            $foodPost = FoodPost::with(['user'])->where('category', 'like', '%' . $category . '%')->where('location', $location)->get();
+            $foodPost = FoodPost::with(['user'])->where('category', 'like', '%' . $category . '%')->where('location', $location)->orderBy('created_at', 'desc')->get();
         }
 
         return ResponseFormatter::success(
@@ -108,7 +108,7 @@ class FoodPostController extends Controller
                 'food_desc' => $request->food_desc,
                 'category' => $request->category,
                 'location' => $request->location,
-                'is_verified' => false,
+                'is_verified' => $request->is_verified,
                 'is_available' => true,
                 'picturePath' => $file
             ]);

@@ -14,7 +14,6 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.munawirfikri.saveoury.R
 import com.munawirfikri.saveoury.data.source.local.SharedPreference
 import com.munawirfikri.saveoury.databinding.FragmentHomeBinding
-import com.munawirfikri.saveoury.utils.MarginItemDecoration
 
 class HomeFragment : Fragment(), View.OnClickListener, SwipeRefreshLayout.OnRefreshListener {
 

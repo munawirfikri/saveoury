@@ -38,9 +38,9 @@ class ProfileFragment : Fragment(), View.OnClickListener {
         binding.tvEmail.text = email.toString()
         Glide.with(this)
             .load(imageProfile)
-            .error(R.drawable.ic_add_photo)
+            .error(R.drawable.ic_broken_image)
             .centerCrop()
-            .placeholder(R.drawable.ic_add_photo)
+            .placeholder(R.drawable.ic_person)
             .into(binding.profile.imgProfile)
         return binding.root
     }

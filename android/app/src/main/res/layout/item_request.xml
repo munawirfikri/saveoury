@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center"
+    android:background="@drawable/border_set"
+    android:orientation="horizontal"
+    android:padding="12dp"
+    >
+<LinearLayout
+    android:gravity="center_vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:layout_weight="1"
+    >
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/imgProfile"
+        android:padding="2dp"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:src="@color/grey"
+        />
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginStart="12dp"
+        >
+        <TextView
+            android:id="@+id/tv_name_recipient"
+            android:textColor="@color/black"
+            android:fontFamily="@font/poppins_medium"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/nama_lengkap"
+            />
+        <TextView
+            android:id="@+id/tv_address_recipient"
+            android:textColor="@color/black"
+            android:fontFamily="@font/poppins_light"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/alamat_rumah"
+            />
+    </LinearLayout>
+</LinearLayout>
+ <ToggleButton
+     android:id="@+id/tb_response"
+     android:layout_width="match_parent"
+     android:layout_height="wrap_content"
+     android:layout_weight="2"
+     android:textOn="Diizinkan"
+     android:textOff="Diminta"
+     />
+
+
+</LinearLayout>

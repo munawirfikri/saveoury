@@ -1,5 +1,8 @@
 package com.munawirfikri.saveoury.ui.main.home
 
+import android.annotation.SuppressLint
+import android.content.Intent
+import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -8,6 +11,10 @@ import com.bumptech.glide.request.RequestOptions
 import com.munawirfikri.saveoury.R
 import com.munawirfikri.saveoury.data.source.remote.response.FoodPostItem
 import com.munawirfikri.saveoury.databinding.ItemPostBinding
+import com.munawirfikri.saveoury.ui.detail.DetailActivity
+import java.text.SimpleDateFormat
+import java.util.*
+import kotlin.collections.ArrayList
 
 class HomeAdapter: RecyclerView.Adapter<HomeAdapter.HomeViewHolder>() {
 
@@ -20,14 +27,32 @@ class HomeAdapter: RecyclerView.Adapter<HomeAdapter.HomeViewHolder>() {
         notifyDataSetChanged()
     }
 
+    @Suppress("DEPRECATION")
     class HomeViewHolder(private val binding: ItemPostBinding) : RecyclerView.ViewHolder(binding.root)
     {
+        @SuppressLint("SimpleDateFormat", "SetTextI18n", "UseCompatLoadingForColorStateLists")
         fun bind(foodPostItem: FoodPostItem){
             with(binding){
-                namaUser.text = foodPostItem.dataUser.name
-                foodStatus.text = if(foodPostItem.isAvailable==true) "Tersedia" else "Tidak tersedia"
+                tvNamaUser.text = foodPostItem.dataUser.name
+                tvAlamatUser.text = foodPostItem.dataUser.address
+                val date = Date(foodPostItem.createdAt!!)
+                val format = SimpleDateFormat("dd/MM/yyyy (HH:mm)")
+                tvFoodPostTime.text = "Diposting pada tanggal " + format.format(date)
                 tvFoodDesc.text = foodPostItem.foodDesc
                 tvFoodName.text = foodPostItem.foodName
+                 if(foodPostItem.isAvailable == true){
+                     tvItemStatus.text = "Tersedia"
+                     tvItemStatus.setTextColor(root.resources.getColorStateList(R.color.primary_variant))
+                 }else{
+                     tvItemStatus.text = "Tidak Tersedia"
+                     tvItemStatus.setTextColor(Color.GRAY)
+                 }
+
+                itemView.setOnClickListener {
+                    val intent = Intent(itemView.context, DetailActivity::class.java)
+                    intent.putExtra(DetailActivity.EXTRA_ID, foodPostItem.id.toString())
+                    itemView.context.startActivity(intent)
+                }
                 val foodImage = foodPostItem.picturePath?.substring(4)
                 Glide.with(itemView.context)
                     .load("https$foodImage")
@@ -60,4 +85,5 @@ class HomeAdapter: RecyclerView.Adapter<HomeAdapter.HomeViewHolder>() {
     }
 
     override fun getItemCount() = listData.size
+
 }

@@ -74,6 +74,7 @@
         </LinearLayout>
 
     </LinearLayout>
+
     <include
         android:visibility="gone"
         android:id="@+id/view_empty"
@@ -100,8 +101,7 @@
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
         android:id="@+id/swipeContainer"
         android:layout_width="match_parent"
-        android:layout_marginBottom="36dp"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content">
         <androidx.recyclerview.widget.RecyclerView
             android:layout_below="@+id/header"
             android:id="@+id/rv_home"
@@ -110,5 +110,4 @@
             app:layout_behavior="@string/appbar_scrolling_view_behavior"
             tools:listitem="@layout/item_post"/>
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
-
 </LinearLayout>

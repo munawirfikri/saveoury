@@ -29,7 +29,7 @@ class Transaction extends Model
 
     public function user()
     {
-        return $this->hasOne(User::class,'id','owner_id');
+        return $this->hasOne(User::class,'id','recipient_id');
     }
 
     public function getCreatedAtAttribute($created_at)

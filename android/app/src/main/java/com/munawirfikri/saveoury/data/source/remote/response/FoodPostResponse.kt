@@ -33,9 +33,6 @@ data class FoodPostItem(
 	@field:SerializedName("is_available")
 	val isAvailable: Boolean? = null,
 
-	@field:SerializedName("taken_by")
-	val takenBy: Any? = null,
-
 	@field:SerializedName("updated_at")
 	val updatedAt: Long? = null,
 

@@ -43,6 +43,7 @@ class PostFragment : Fragment(), View.OnClickListener {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         if (activity!=null){
+            binding.btnSubmit.isEnabled = false
             postViewModel.isValidImage.observe(viewLifecycleOwner, {
                 if (it != 1){
                     binding.btnSubmit.isEnabled = false

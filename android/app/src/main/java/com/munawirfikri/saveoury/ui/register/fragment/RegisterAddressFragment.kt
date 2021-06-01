@@ -91,13 +91,14 @@ class RegisterAddressFragment : Fragment(), View.OnClickListener {
                 val name = binding.etNamaLengkap.text.toString()
                 val phoneNumber = binding.etNomorHp.text.toString()
                 val address = binding.etAlamatRumah.text.toString()
-                val city = binding.etKota.text.toString()
+                val city = binding.etKota.text.toString().uppercase()
 
                 if (name.isNotEmpty() && phoneNumber.isNotEmpty() && address.isNotEmpty() && city.isNotEmpty()){
                     registerViewModel.registerUser(name, email, password, phoneNumber,address,city)
                     registerViewModel.user.observe(viewLifecycleOwner, {user ->
                         if (user != null){
                             sharedPref.run {
+                                save("id_user", user.user.id.toString())
                                 save("token", user.tokenType.toString() + " " + user.accessToken.toString())
                                 save("name", user.user.name.toString())
                                 save("email", user.user.email.toString())

@@ -15,9 +15,9 @@ class CreateTransactionsTable extends Migration
     {
         Schema::create('transactions', function (Blueprint $table) {
             $table->id();
-            $table->integer('food_id')->unique();
-            $table->integer('owner_id')->unique();
-            $table->integer('recipient_id')->unique();
+            $table->integer('food_id');
+            $table->integer('owner_id');
+            $table->integer('recipient_id');
             $table->string('status');
             $table->softDeletes();
             $table->timestamps();

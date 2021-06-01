@@ -1,5 +1,6 @@
 package com.munawirfikri.saveoury.ui.main.profile
 
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -8,6 +9,7 @@ import com.bumptech.glide.request.RequestOptions
 import com.munawirfikri.saveoury.R
 import com.munawirfikri.saveoury.data.source.remote.response.FoodPostItem
 import com.munawirfikri.saveoury.databinding.ItemMyPostBinding
+import com.munawirfikri.saveoury.ui.detail.DetailActivity
 
 class ProfileAdapter: RecyclerView.Adapter<ProfileAdapter.ProfileViewHolder>() {
 
@@ -32,6 +34,11 @@ class ProfileAdapter: RecyclerView.Adapter<ProfileAdapter.ProfileViewHolder>() {
                         RequestOptions.placeholderOf(R.drawable.ic_loading)
                             .error(R.drawable.ic_error))
                     .into(imgPoster)
+                itemView.setOnClickListener {
+                    val intent = Intent(itemView.context, DetailActivity::class.java)
+                    intent.putExtra(DetailActivity.EXTRA_ID, foodPostItem.id.toString())
+                    itemView.context.startActivity(intent)
+                }
                 binding.tvItemFoodname.text = foodPostItem.foodName
                 binding.tvItemStatus.text = if(foodPostItem.isAvailable == true) "Status: Tersedia" else "Status: Selesai"
             }

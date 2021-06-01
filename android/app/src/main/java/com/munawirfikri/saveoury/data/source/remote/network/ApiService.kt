@@ -1,9 +1,6 @@
 package com.munawirfikri.saveoury.data.source.remote.network
 
-import com.munawirfikri.saveoury.data.source.remote.response.FoodPostResponse
-import com.munawirfikri.saveoury.data.source.remote.response.ImageResponse
-import com.munawirfikri.saveoury.data.source.remote.response.PlaceResponse
-import com.munawirfikri.saveoury.data.source.remote.response.UserResponse
+import com.munawirfikri.saveoury.data.source.remote.response.*
 import okhttp3.MultipartBody
 import retrofit2.Call
 import retrofit2.http.*
@@ -19,7 +16,9 @@ interface ApiService {
 
     @GET("foodpost")
     fun getFoodPost(
-        @Query("location") city: String? = "Pekanbaru"
+        @Query("location") city: String? = "Pekanbaru",
+        @Query("is_available") isAvailable: Boolean = true,
+        @Query("is_verified") isVerified: Boolean = true
     ): Call<FoodPostResponse>
 
     @GET("foodpost")
@@ -27,6 +26,36 @@ interface ApiService {
         @Query("location") city: String? = "Pekanbaru",
         @Query("id_user") id_user: String
     ): Call<FoodPostResponse>
+
+    @GET("foodpost")
+    fun getDetailFoodById(
+        @Query("id") id: String
+    ): Call<FoodPostResponse>
+
+    @GET("transaction")
+    fun getTransactionByOwnerIdAndFoodId(
+        @Query("owner_id") owner_id: String,
+        @Query("food_id") food_id: String
+    ): Call<TransactionResponse>
+
+    @FormUrlEncoded
+    @POST("transaction/add")
+    fun addTransaction(
+        @Header("Authorization") authorization: String,
+        @Field("food_id") foodId: String,
+        @Field("owner_id") ownerId: String,
+        @Field("recipient_id") recipientId: String,
+        @Field("status") status: String = "Diminta"
+    ): Call<TransactionResponse>
+
+    @FormUrlEncoded
+    @POST("transaction/update/{id}")
+    fun updateTransaction(
+        @Header("Authorization") authorization: String,
+        @Path("id") id: String,
+        @Field("owner_id") ownerId: String,
+        @Field("status") status: String
+    ): Call<TransactionResponse>
 
     @Multipart
     @POST("foodpost/add")
@@ -39,6 +68,14 @@ interface ApiService {
         @Part foodLocation: MultipartBody.Part,
         @Part IsVerifiedFood: MultipartBody.Part,
         @Part IsAvailableFood: MultipartBody.Part
+    ): Call<FoodPostResponse>
+
+    @FormUrlEncoded
+    @POST("foodpost/update/{id}")
+    fun setFoodPostStatus(
+        @Header("Authorization") authorization: String,
+        @Path("id") id: String,
+        @Field("is_available") isAvailable: Boolean
     ): Call<FoodPostResponse>
 
     @Multipart
