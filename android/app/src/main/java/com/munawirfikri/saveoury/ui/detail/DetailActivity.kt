@@ -103,9 +103,13 @@ class DetailActivity : AppCompatActivity(), View.OnClickListener {
                             if (isChecked){
                                 detailViewModel.setFoodPostStatus(token.toString(), it.id.toString(), true)
                                 Snackbar.make(binding.root, "Postingan untuk makanan ini diaktifkan", Snackbar.LENGTH_SHORT).show()
+                                finish()
+                                startActivity(intent)
                             }else{
                                 detailViewModel.setFoodPostStatus(token.toString(), it.id.toString(), false)
                                 Snackbar.make(binding.root, "Postingan untuk makanan ini dinonaktifkan", Snackbar.LENGTH_SHORT).show()
+                                finish()
+                                startActivity(intent)
                             }
                         }
 

@@ -40,6 +40,7 @@ class HomeFragment : Fragment(), View.OnClickListener, SwipeRefreshLayout.OnRefr
             if (location!=null){
                 binding.tvLocation.text = location.toString()
                 binding.tvLocation.setOnClickListener(this)
+                binding.tvKetuk.setOnClickListener(this)
             }
 
             binding.swipeContainer.setOnRefreshListener(this)
@@ -80,6 +81,10 @@ class HomeFragment : Fragment(), View.OnClickListener, SwipeRefreshLayout.OnRefr
     override fun onClick(v: View?) {
         when(v?.id){
             R.id.tv_location -> {
+                val alamat = sharedPref.getValueString("address")
+                showDialog(alamat.toString())
+            }
+            R.id.tv_ketuk -> {
                 val alamat = sharedPref.getValueString("address")
                 showDialog(alamat.toString())
             }

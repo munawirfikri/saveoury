@@ -2,6 +2,7 @@ package com.munawirfikri.saveoury.data.source.remote.network
 
 import com.munawirfikri.saveoury.data.source.remote.response.*
 import okhttp3.MultipartBody
+import okhttp3.RequestBody
 import retrofit2.Call
 import retrofit2.http.*
 
@@ -101,6 +102,17 @@ interface ApiService {
     fun loginUser(
         @Field("email") email: String,
         @Field("password") password: String
+    ): Call<UserResponse>
+
+    @FormUrlEncoded
+    @POST("user")
+    fun updateUser(
+        @Header("Authorization") authorization: String,
+        @Field("email") email: String,
+        @Field("name") name: String,
+        @Field("address") address: String,
+        @Field("phoneNumber") phoneNumber: String,
+        @Field("city") city: String
     ): Call<UserResponse>
 
     @Multipart

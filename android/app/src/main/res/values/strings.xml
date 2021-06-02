@@ -67,4 +67,6 @@
     <string name="masukkan_kabupaten_kota_tempat_kamu_tinggal">Masukkan kabupaten/kota tempat kamu tinggal</string>
     <string name="update_data">Update Data</string>
     <string name="batalkan">Batalkan</string>
+    <string name="diizinkan">Diizinkan</string>
+    <string name="menunggu_konfirmasi">Menunggu Konfirmasi</string>
 </resources>
