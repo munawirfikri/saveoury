@@ -133,7 +133,7 @@ class PostFragment : Fragment(), View.OnClickListener {
                     postViewModel.addFoodPost(
                         authorization, image,
                         foodName, foodDesc,
-                        foodCategory.toString(), location, "1", "1")
+                        foodCategory.toString(), location, true, true)
                     Snackbar.make(binding.root, "Postingan berhasil ditambahkan", Snackbar.LENGTH_SHORT).show()
                 }else{
                     Snackbar.make(binding.root, "Silahkan diisi semua terlebih dahulu", Snackbar.LENGTH_SHORT).show()

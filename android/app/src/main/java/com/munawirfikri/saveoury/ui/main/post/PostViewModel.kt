@@ -1,5 +1,6 @@
 package com.munawirfikri.saveoury.ui.main.post
 
+import android.annotation.SuppressLint
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -27,6 +28,7 @@ class PostViewModel : ViewModel() {
     private val _isValidImage = MutableLiveData<Int>()
     val isValidImage: LiveData<Int> = _isValidImage
 
+    @SuppressLint("SdCardPath")
     fun predictImage(path: String){
         _isLoading.value = true
         val file = File("/data/data/com.munawirfikri.saveoury/cache/foodpost/$path")
@@ -49,11 +51,12 @@ class PostViewModel : ViewModel() {
         })
     }
 
+    @SuppressLint("SdCardPath")
     fun addFoodPost(
         authorization: String, path: String,
         foodName: String, foodDesc: String,
         foodCategory: String, foodLocation: String,
-        isVerifiedFood: String, isAvailableFood: String){
+        isVerifiedFood: Boolean, isAvailableFood: Boolean){
 
         val file = File("/data/data/com.munawirfikri.saveoury/cache/foodpost/$path")
         val requestBody = file.asRequestBody("*/*".toMediaTypeOrNull())
@@ -62,8 +65,6 @@ class PostViewModel : ViewModel() {
         val desc = MultipartBody.Part.createFormData("food_desc", foodDesc)
         val category = MultipartBody.Part.createFormData("category", foodCategory)
         val location = MultipartBody.Part.createFormData("location", foodLocation)
-        val isVerified = MultipartBody.Part.createFormData("is_verified", isVerifiedFood)
-        val isAvailable = MultipartBody.Part.createFormData("is_available", isAvailableFood)
 
         val client = ApiConfig.provideSaveouryApiService().addFoodPost(
             authorization,
@@ -71,9 +72,7 @@ class PostViewModel : ViewModel() {
             name,
             desc,
             category,
-            location,
-            isVerified,
-            isAvailable
+            location
         )
 
         client.enqueue(object : Callback<FoodPostResponse>{

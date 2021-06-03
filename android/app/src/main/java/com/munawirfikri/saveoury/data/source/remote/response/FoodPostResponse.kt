@@ -25,13 +25,13 @@ data class FoodPostItem(
 	val idUser: Int? = null,
 
 	@field:SerializedName("is_verified")
-	val isVerified: Boolean? = null,
+	val isVerified: Int? = null,
 
 	@field:SerializedName("deleted_at")
 	val deletedAt: Any? = null,
 
 	@field:SerializedName("is_available")
-	val isAvailable: Boolean? = null,
+	val isAvailable: Int? = null,
 
 	@field:SerializedName("updated_at")
 	val updatedAt: Long? = null,

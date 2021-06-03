@@ -38,13 +38,13 @@ data class FoodPost(
 	val category: String,
 
 	@field:SerializedName("is_verified")
-	val isVerified: Boolean,
+	val isVerified: Int,
 
 	@field:SerializedName("deleted_at")
 	val deletedAt: Any,
 
 	@field:SerializedName("is_available")
-	val isAvailable: Boolean
+	val isAvailable: Int
 )
 
 data class Transaction(

@@ -41,7 +41,7 @@ class DetailAdapter: RecyclerView.Adapter<DetailAdapter.DetailViewHolder>() {
                         RequestOptions.placeholderOf(R.drawable.ic_loading)
                             .error(R.drawable.ic_error))
                     .into(imgProfile)
-                tbResponse.isChecked = (item.status == "Diterima")
+                tbResponse.isChecked = item.status == "Diterima"
 
                 tbResponse.setOnCheckedChangeListener { _, isChecked ->
                     if (isChecked) {

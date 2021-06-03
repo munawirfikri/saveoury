@@ -58,7 +58,7 @@ class DetailActivity : AppCompatActivity(), View.OnClickListener {
                                 .error(R.drawable.ic_error))
                         .into(binding.imgFood)
                     val ownerId = it.idUser
-                    if (it.isAvailable == false){
+                    if (it.isAvailable == 0){
                         binding.closeRequest.root.visibility = View.VISIBLE
                         binding.ownerSide.root.visibility = View.GONE
                         binding.notRequestYet.root.visibility = View.GONE
@@ -96,17 +96,18 @@ class DetailActivity : AppCompatActivity(), View.OnClickListener {
                         binding.recipientSide.root.visibility = View.GONE
                         binding.switchBerbagi.visibility = View.VISIBLE
                         binding.closeRequest.root.visibility = View.GONE
-                        binding.switchBerbagi.isChecked = it.isAvailable!!
+
+                        binding.switchBerbagi.isChecked = it.isAvailable == 1
 
                         binding.switchBerbagi.setOnCheckedChangeListener { _, isChecked ->
                             val token = sharedPref.getValueString("token")
                             if (isChecked){
-                                detailViewModel.setFoodPostStatus(token.toString(), it.id.toString(), true)
+                                detailViewModel.setFoodPostStatus(token.toString(), it.id.toString(), 1)
                                 Snackbar.make(binding.root, "Postingan untuk makanan ini diaktifkan", Snackbar.LENGTH_SHORT).show()
                                 finish()
                                 startActivity(intent)
                             }else{
-                                detailViewModel.setFoodPostStatus(token.toString(), it.id.toString(), false)
+                                detailViewModel.setFoodPostStatus(token.toString(), it.id.toString(), 0)
                                 Snackbar.make(binding.root, "Postingan untuk makanan ini dinonaktifkan", Snackbar.LENGTH_SHORT).show()
                                 finish()
                                 startActivity(intent)

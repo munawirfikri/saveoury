@@ -26,9 +26,8 @@ class ProfileAdapter: RecyclerView.Adapter<ProfileAdapter.ProfileViewHolder>() {
     {
         fun bind(foodPostItem: FoodPostItem){
             with(binding){
-                val foodImage = foodPostItem.picturePath?.substring(4)
                 Glide.with(itemView.context)
-                    .load("https$foodImage")
+                    .load(foodPostItem.picturePath)
                     .centerCrop()
                     .apply(
                         RequestOptions.placeholderOf(R.drawable.ic_loading)
@@ -40,7 +39,7 @@ class ProfileAdapter: RecyclerView.Adapter<ProfileAdapter.ProfileViewHolder>() {
                     itemView.context.startActivity(intent)
                 }
                 binding.tvItemFoodname.text = foodPostItem.foodName
-                binding.tvItemStatus.text = if(foodPostItem.isAvailable == true) "Status: Tersedia" else "Status: Selesai"
+                binding.tvItemStatus.text = if(foodPostItem.isAvailable == 1) "Status: Tersedia" else "Status: Selesai"
             }
         }
 

@@ -2,7 +2,6 @@ package com.munawirfikri.saveoury.data.source.remote.network
 
 import com.munawirfikri.saveoury.data.source.remote.response.*
 import okhttp3.MultipartBody
-import okhttp3.RequestBody
 import retrofit2.Call
 import retrofit2.http.*
 
@@ -18,8 +17,7 @@ interface ApiService {
     @GET("foodpost")
     fun getFoodPost(
         @Query("location") city: String? = "Pekanbaru",
-        @Query("is_available") isAvailable: Boolean = true,
-        @Query("is_verified") isVerified: Boolean = true
+        @Query("is_verified") isVerified: Int = 1
     ): Call<FoodPostResponse>
 
     @GET("foodpost")
@@ -66,9 +64,7 @@ interface ApiService {
         @Part foodName: MultipartBody.Part,
         @Part foodDesc: MultipartBody.Part,
         @Part foodCategory: MultipartBody.Part,
-        @Part foodLocation: MultipartBody.Part,
-        @Part IsVerifiedFood: MultipartBody.Part,
-        @Part IsAvailableFood: MultipartBody.Part
+        @Part foodLocation: MultipartBody.Part
     ): Call<FoodPostResponse>
 
     @FormUrlEncoded
@@ -76,7 +72,7 @@ interface ApiService {
     fun setFoodPostStatus(
         @Header("Authorization") authorization: String,
         @Path("id") id: String,
-        @Field("is_available") isAvailable: Boolean
+        @Field("is_available") isAvailable: Int
     ): Call<FoodPostResponse>
 
     @Multipart

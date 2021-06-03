@@ -41,8 +41,8 @@ class DetailViewModel : ViewModel() {
             }
         })
     }
-    fun setFoodPostStatus(authorization: String, id: String, isAvailable: Boolean){
-        val client = ApiConfig.provideSaveouryApiService()?.setFoodPostStatus(authorization, id, isAvailable)
+    fun setFoodPostStatus(authorization: String, id: String, isAvailable: Int){
+        val client = ApiConfig.provideSaveouryApiService().setFoodPostStatus(authorization, id, isAvailable)
         client.enqueue(object : Callback<FoodPostResponse>{
             override fun onResponse(
                 call: Call<FoodPostResponse>,

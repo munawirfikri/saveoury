@@ -40,7 +40,7 @@ class HomeAdapter: RecyclerView.Adapter<HomeAdapter.HomeViewHolder>() {
                 tvFoodPostTime.text = "Diposting pada tanggal " + format.format(date)
                 tvFoodDesc.text = foodPostItem.foodDesc
                 tvFoodName.text = foodPostItem.foodName
-                 if(foodPostItem.isAvailable == true){
+                 if(foodPostItem.isAvailable == 1){
                      tvItemStatus.text = "Tersedia"
                      tvItemStatus.setTextColor(root.resources.getColorStateList(R.color.primary_variant))
                  }else{
@@ -53,9 +53,8 @@ class HomeAdapter: RecyclerView.Adapter<HomeAdapter.HomeViewHolder>() {
                     intent.putExtra(DetailActivity.EXTRA_ID, foodPostItem.id.toString())
                     itemView.context.startActivity(intent)
                 }
-                val foodImage = foodPostItem.picturePath?.substring(4)
                 Glide.with(itemView.context)
-                    .load("https$foodImage")
+                    .load(foodPostItem.picturePath)
                     .centerCrop()
                     .apply(
                         RequestOptions.placeholderOf(R.drawable.ic_loading)
