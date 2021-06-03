@@ -14,7 +14,7 @@
         android:theme="@style/Theme.Saveoury"
         android:usesCleartextTraffic="true"
         tools:ignore="AllowBackup">
-        <activity android:name=".ui.detail.DetailActivity"></activity>
+        <activity android:name=".ui.detail.DetailActivity"/>
         <activity
             android:name=".ui.register.RegisterActivity"
             android:windowSoftInputMode="adjustPan" />

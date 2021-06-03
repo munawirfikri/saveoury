@@ -79,6 +79,7 @@
             android:id="@+id/et_email"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:textColor="@color/black"
             android:textSize="14sp"
             android:background="@drawable/edit_text_background"
             android:fontFamily="@font/poppins"
@@ -99,6 +100,7 @@
 
         <EditText
             android:id="@+id/et_password"
+            android:textColor="@color/black"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textSize="14sp"
@@ -123,6 +125,7 @@
             android:id="@+id/et_password_confirmation"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:textColor="@color/black"
             android:textSize="14sp"
             android:background="@drawable/edit_text_background"
             android:fontFamily="@font/poppins"

@@ -72,6 +72,7 @@
             />
 
         <EditText
+            android:textColor="@color/black"
             android:id="@+id/et_nama_lengkap"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -95,6 +96,7 @@
             />
 
         <EditText
+            android:textColor="@color/black"
             android:id="@+id/et_nomor_hp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -118,6 +120,7 @@
 
 
         <EditText
+            android:textColor="@color/black"
             android:id="@+id/et_alamat_rumah"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -142,6 +145,7 @@
         <AutoCompleteTextView
                 android:id="@+id/et_kota"
                 android:padding="10dp"
+                android:textColor="@color/black"
                 android:fontFamily="@font/poppins"
                 android:textSize="14sp"
                 android:layout_width="match_parent"
