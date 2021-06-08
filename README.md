@@ -2,10 +2,6 @@ https://img.shields.io/badge/Team%20ID-B21-CAP0062-blue.svg
 Saveoury: Food Waste Solution
 Capstone Project for Bangkit Academy 2021
 
-Let's try
-https://drive.google.com/file/d/1o4Gs7b8lLCKF2JMkZyc8bews0RQhLaWa/view?usp=sharing
-
-
 # Saveoury: Food Waste Solution
 
 Stop wasting food habit, get in touch with our nearest.
@@ -40,13 +36,17 @@ git clone https://github.com/munawirfikri/saveoury.git
 cd saveoury
 ```
 2. Run the APP
-* Android
+#### Android
 - Open android studio
 - Open project folder -> saveoury -> android
-* Backend
+#### Backend
 - Start phpmyadmin, mysql at your localhost with XAMPP or Laragon or etc.
 - Put the 'backend' folder in htdocs folder(XAMPP) or www folder(Laragon) and change the folder name with yours (example: saveoury-backend)
 - run the localhost in your browser. when you use XAMPP just type at your browser "http://localhost/{nama_folder_baru}" or when you use laragon just type "http://{nama_folder_baru}.test
+
+### Executing App
+* Download the APK file here:
+https://drive.google.com/file/d/1o4Gs7b8lLCKF2JMkZyc8bews0RQhLaWa/view?usp=sharing
 
 ### Screenshots
 
