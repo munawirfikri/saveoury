@@ -58,6 +58,7 @@ https://drive.google.com/file/d/1o4Gs7b8lLCKF2JMkZyc8bews0RQhLaWa/view?usp=shari
 
 ![authentication page](https://user-images.githubusercontent.com/46962764/121106218-cb043200-c82f-11eb-85d6-9801b4dccdb8.jpg)
 ![home page](https://user-images.githubusercontent.com/46962764/121106237-d35c6d00-c82f-11eb-9935-eba3e7f3d25b.jpg)
+![new post page](https://user-images.githubusercontent.com/46962764/121228118-8ec7e480-c8b6-11eb-9f34-f2b6436b2328.jpg)
 ![profile page](https://user-images.githubusercontent.com/46962764/121106269-e4a57980-c82f-11eb-95e1-f69dbd7271ca.jpg)
 
 ## Team Members
