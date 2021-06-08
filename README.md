@@ -1,6 +1,4 @@
 https://img.shields.io/badge/Team%20ID-B21-CAP0062-blue.svg
-Saveoury: Food Waste Solution
-Capstone Project for Bangkit Academy 2021
 
 # Saveoury: Food Waste Solution
 
@@ -67,8 +65,8 @@ command to run if program contains helper info
 
 Contributors names and contact info
 
-Munawir Fikri Al-akbari
-Irfan Algani Khalid
+* Munawir Fikri Al-akbari
+* Irfan Algani Khalid
 
 ## License
 
